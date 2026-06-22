@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AEL Nova Group | Inversión y Desarrollo Corporativo</title>
+    <meta name="description" content="AEL Nova Group desarrolla proyectos inmobiliarios y oportunidades de inversión con una visión moderna y orientada al futuro.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* --- VARIABLES GLOBALES --- */
+        :root {
+            --color-azul: #142136;
+            --color-dorado: #edb612;
+            --color-blanco: #ffffff;
+            --color-gris-claro: #f8f9fa;
+            --color-texto: #444444;
+            --fuente-titulos: 'Times New Roman', Times, serif;
+            --fuente-textos: 'Outfit', sans-serif;
+        }
+
+        /* --- RESET Y ESTILOS BASE --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--fuente-textos); color: var(--color-texto); background-color: var(--color-blanco); line-height: 1.6; overflow-x: hidden; }
+        h1, h2, h3, h4 { font-family: var(--fuente-titulos); color: var(--color-azul); font-weight: normal; }
+        a { text-decoration: none; color: inherit; }
+
+        /* --- UTILIDADES --- */
+        .contenedor { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .linea-dorada { width: 60px; height: 3px; background-color: var(--color-dorado); margin: 0 auto 40px auto; }
+        .titulo-seccion { font-size: 3rem; margin-bottom: 20px; text-align: center; }
+
+        /* --- NAVEGACIÓN (HEADER) --- */
+        header { position: fixed; width: 100%; top: 0; z-index: 1000; padding: 20px 0; transition: all 0.4s ease; }
+        header.scrolled { background-color: rgba(20, 33, 54, 0.98); padding: 10px 0; backdrop-filter: blur(10px); box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; }
+        .logo img { height: 55px; transition: all 0.3s ease; filter: brightness(0) invert(1); }
+        
+        .nav-menu { display: flex; list-style: none; gap: 40px; }
+        .nav-menu a { color: var(--color-blanco); font-size: 14px; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; transition: color 0.3s ease; }
+        .nav-menu a:hover { color: var(--color-dorado); }
+
+        /* Menú Móvil (Hamburguesa) */
+        .menu-toggle { display: none; cursor: pointer; flex-direction: column; gap: 5px; }
+        .menu-toggle span { width: 30px; height: 3px; background-color: var(--color-blanco); transition: 0.3s; }
+
+        /* --- HERO (PORTADA) --- */
+        .hero {
+            height: 100vh;
+            background-image: linear-gradient(rgba(20, 33, 54, 0.8), rgba(20, 33, 54, 0.85)), url('https://pub-11a20637fa094e3ab646191bbcb2fedb.r2.dev/ael-img/home%20vep.jpeg');
+            background-attachment: fixed; background-position: center; background-size: cover;
+            display: flex; align-items: center; justify-content: center; text-align: center;
+        }
+        .hero h1 { color: var(--color-blanco); font-size: 5vw; margin-bottom: 25px; line-height: 1.1; }
+        .resalte-dorado { color: var(--color-dorado); font-weight: bold; }
+        .hero p { color: #e2e8f0; font-size: 1.2rem; font-weight: 300; max-width: 750px; margin: 0 auto 40px auto; }
+        
+        .btn-dorado {
+            display: inline-block; background-color: var(--color-dorado); color: var(--color-azul);
+            padding: 15px 40px; font-weight: 600; letter-spacing: 1px; border-radius: 2px;
+            transition: all 0.3s ease; text-transform: uppercase; font-size: 14px; border: none; cursor: pointer;
+        }
+        .btn-dorado:hover { background-color: #d19e0b; transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+
+        /* --- AEL EN CIFRAS --- */
+        .cifras { background-color: var(--color-azul); padding: 80px 0; color: var(--color-blanco); text-align: center; border-bottom: 4px solid var(--color-dorado); }
+        .grid-cifras { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+        .cifra-item h4 { font-family: var(--fuente-textos); font-size: 3.5rem; color: var(--color-dorado); font-weight: 600; margin-bottom: 10px; }
+        .cifra-item p { text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; color: #cbd5e1; }
+
+        /* --- SERVICIOS --- */
+        .servicios { padding: 120px 0; background-color: var(--color-blanco); }
+        .grid-servicios { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 60px; }
+        .card-servicio { background-color: var(--color-gris-claro); padding: 50px 30px; transition: all 0.4s ease; border-top: 4px solid transparent; }
+        .card-servicio:hover { transform: translateY(-10px); background-color: #ffffff; box-shadow: 0 20px 40px rgba(0,0,0,0.08); border-top-color: var(--color-dorado); }
+        .card-servicio h3 { color: var(--color-azul); font-size: 1.8rem; margin-bottom: 20px; }
+        .card-servicio ul { list-style: none; color: #666; }
+        .card-servicio ul li { margin-bottom: 15px; position: relative; padding-left: 20px; }
+        .card-servicio ul li::before { content: '•'; color: var(--color-dorado); position: absolute; left: 0; font-size: 1.2rem; line-height: 1; }
+
+        /* --- PROYECTOS DESTACADOS --- */
+        .proyectos { padding: 120px 0; background-color: var(--color-gris-claro); }
+        .grid-proyectos { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; margin-top: 50px; }
+        .card-proyecto { background: var(--color-blanco); overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: 0.3s; position: relative; }
+        .card-proyecto:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(0,0,0,0.1); }
+        .img-proyecto { height: 250px; background-size: cover; background-position: center; position: relative; }
+        .tag-estado { position: absolute; top: 20px; right: 20px; background: var(--color-dorado); color: var(--color-azul); padding: 5px 15px; font-weight: 600; font-size: 0.8rem; text-transform: uppercase; border-radius: 2px; }
+        .info-proyecto { padding: 30px; }
+        .info-proyecto h3 { font-size: 1.5rem; margin-bottom: 10px; }
+        .info-proyecto p { color: #666; font-size: 0.95rem; margin-bottom: 20px; }
+        .link-proyecto { color: var(--color-azul); font-weight: 600; text-transform: uppercase; font-size: 0.9rem; border-bottom: 2px solid var(--color-dorado); padding-bottom: 5px; }
+
+        /* --- INSTAGRAM FEED --- */
+        .instagram-feed { padding: 100px 0; background-color: var(--color-blanco); text-align: center; }
+        .inst-header { margin-bottom: 50px; }
+        .inst-header h2 { font-size: 2.5rem; margin-bottom: 15px; }
+        .inst-header a { color: var(--color-azul); font-weight: 600; font-size: 1.2rem; display: inline-flex; align-items: center; gap: 10px; transition: color 0.3s; }
+        .inst-header a:hover { color: var(--color-dorado); }
+        .inst-header a i { font-size: 1.5rem; background: -webkit-linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .widget-container { max-width: 1000px; margin: 0 auto; min-height: 300px; }
+
+       /* --- CONTACTO Y FORMULARIOS CON PESTAÑAS --- */
+       .contacto { background-image: linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.98)), url('https://images.unsplash.com/photo-1554469384-e58fac16e23a?auto=format&fit=crop&w=1950&q=80'); background-attachment: fixed; padding: 120px 0; }
+        .grid-contacto { display: grid; grid-template-columns: 1fr 1.2fr; gap: 60px; background: var(--color-blanco); padding: 60px; box-shadow: 0 20px 50px rgba(0,0,0,0.05); border-left: 5px solid var(--color-azul); }
+        
+        /* Contenedor de Pestañas (Tabs) */
+        .tabs-contacto { display: flex; gap: 15px; margin-bottom: 30px; border-bottom: 2px solid #e2e8f0; }
+        .tab-btn { padding: 12px 25px; cursor: pointer; font-weight: 600; font-family: var(--fuente-textos); font-size: 0.95rem; color: #64748b; background: none; border: none; border-bottom: 3px solid transparent; margin-bottom: -2px; transition: all 0.3s ease; text-transform: uppercase; letter-spacing: 0.5px; }
+        .tab-btn:hover { color: var(--color-azul); }
+        .tab-btn.activo { color: var(--color-azul); border-bottom-color: var(--color-dorado); }
+
+        /* Control de los formularios dinámicos */
+        .formulario-wrapper { position: relative; }
+        .form-dinamico { display: none; animation: fadeIn 0.4s ease; }
+        .form-dinamico.activo { display: flex; flex-direction: column; gap: 20px; }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Estructuras internas de los formularios */
+        .formulario input, .formulario textarea, .formulario select { width: 100%; padding: 15px; border: 1px solid #e2e8f0; font-family: var(--fuente-textos); outline: none; background-color: var(--color-gris-claro); transition: 0.3s; color: var(--color-texto); font-size: 0.95rem; }
+        .formulario input:focus, .formulario textarea:focus, .formulario select:focus { border-color: var(--color-dorado); background: var(--color-blanco); }
+        .formulario textarea { height: 120px; resize: none; }
+        
+        /* Diseño de Selects Personalizados */
+        .formulario select { appearance: none; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23444444' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'></polyline></svg>"); background-repeat: no-repeat; background-position: right 15px center; background-size: 16px; cursor: pointer; }
+        
+        /* Títulos de subsección dentro de formularios */
+        .form-subtitulo { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; color: var(--color-azul); font-weight: 600; margin-top: 10px; border-left: 3px solid var(--color-dorado); padding-left: 10px; }
+
+        /* --- FOOTER AVANZADO --- */
+        footer { background-color: #0a1320; color: #94a3b8; padding: 80px 0 30px 0; }
+        .grid-footer { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 50px; margin-bottom: 60px; }
+        .footer-logo img { height: 60px; filter: brightness(0) invert(1); margin-bottom: 20px; }
+        .footer-col h4 { color: var(--color-blanco); font-family: var(--fuente-textos); font-size: 1.2rem; margin-bottom: 20px; position: relative; padding-bottom: 10px; }
+        .footer-col h4::after { content: ''; position: absolute; left: 0; bottom: 0; width: 30px; height: 2px; background: var(--color-dorado); }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 12px; }
+        .footer-col ul li a { transition: 0.3s; }
+        .footer-col ul li a:hover { color: var(--color-dorado); padding-left: 5px; }
+        .footer-bottom { text-align: center; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.05); font-size: 0.9rem; }
+
+        /* --- WHATSAPP FLOTANTE --- */
+        .btn-whatsapp { position: fixed; bottom: 30px; right: 30px; background-color: #25D366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3); z-index: 1000; transition: 0.3s; font-size: 35px; text-decoration: none; }
+        .btn-whatsapp:hover { transform: scale(1.1); box-shadow: 0 15px 25px rgba(37, 211, 102, 0.4); color: white; }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 900px) {
+            .nav-menu { display: none; position: absolute; top: 100%; left: 0; width: 100%; background: var(--color-azul); flex-direction: column; padding: 20px; text-align: center; }
+            .nav-menu.activo { display: flex; }
+            .menu-toggle { display: flex; }
+            .hero h1 { font-size: 2.5rem; }
+            .grid-cifras { grid-template-columns: 1fr; gap: 30px; }
+            .grid-contacto, .grid-footer { grid-template-columns: 1fr; }
+            .grid-contacto { padding: 30px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header id="header">
+        <div class="contenedor nav-container">
+            <a href="#" class="logo">
+                <img src="https://pub-11a20637fa094e3ab646191bbcb2fedb.r2.dev/AEL%20-%20NUEVO%20LOGO%20Oficial%20SVG.svg" alt="AEL Nova Group">
+            </a>
+            <div class="menu-toggle" id="menuToggle">
+                <span></span><span></span><span></span>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#servicios">Áreas de Negocio</a></li>
+                <li><a href="#proyectos">Proyectos</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <section id="inicio" class="hero">
+        <div class="reveal">
+            <h1>Conectamos <span class="resalte-dorado">Oportunidades</span>.<br>Construimos <span class="resalte-dorado">Futuro</span>.</h1>
+            <p>AEL Nova Group desarrolla proyectos inmobiliarios y oportunidades de inversión con una visión moderna, profesional y orientada al futuro.</p>
+            <a href="#contacto" class="btn-dorado">Agendar Asesoría</a>
+        </div>
+    </section>
+
+    <section class="cifras">
+        <div class="contenedor grid-cifras reveal">
+            <div class="cifra-item">
+                <h4 class="contador" data-target="2">0</h4>
+                <p>Proyectos Estratégicos</p>
+            </div>
+            <div class="cifra-item">
+                <h4>MÚLTIPLES</h4>
+                <p>Aliados Comerciales</p>
+            </div>
+            <div class="cifra-item">
+                <h4>100%</h4>
+                <p>Apoyo Integral</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="servicios" class="servicios">
+        <div class="contenedor">
+            <h2 class="titulo-seccion reveal">Áreas Estratégicas</h2>
+            <div class="linea-dorada reveal"></div>
+            
+            <div class="grid-servicios">
+                <div class="card-servicio reveal">
+                    <h3>División Inmobiliaria</h3>
+                    <ul>
+                        <li>Comercialización de terrenos y lotificaciones.</li>
+                        <li>Venta de propiedades residenciales y comerciales.</li>
+                        <li>Desarrollo de proyectos habitacionales.</li>
+                        <li>Asesoría para inversión inmobiliaria.</li>
+                    </ul>
+                </div>
+                <div class="card-servicio reveal">
+                    <h3>Comercio y Exportación</h3>
+                    <ul>
+                        <li>Oportunidades de comercio nacional e internacional.</li>
+                        <li>Gestión de alianzas comerciales.</li>
+                        <li>Comercialización de productos para exportación.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="proyectos" class="proyectos">
+        <div class="contenedor">
+            <h2 class="titulo-seccion reveal">Proyectos Destacados</h2>
+            <div class="linea-dorada reveal"></div>
+            <p style="text-align: center; max-width: 700px; margin: 0 auto; color: #666;" class="reveal">
+                Descubra nuestro portafolio de desarrollos inmobiliarios diseñados para maximizar la plusvalía y generar retornos seguros para nuestros inversionistas.
+            </p>
+
+            <div class="grid-proyectos">
+                <div class="card-proyecto reveal">
+                    <div class="img-proyecto" style="background-image: url('https://pub-11a20637fa094e3ab646191bbcb2fedb.r2.dev/ael-img/VEP%20atardecer.jpeg');">
+                        <span class="tag-estado">Disponible</span>
+                    </div>
+                    <div class="info-proyecto">
+                        <h3>Residencial Villa Entre Pinos</h3>
+                        <p>Desarrollo habitacional de alta gama con ubicaciones estratégicas en un entorno natural y amenidades exclusivas.</p>
+                        <a href="#contacto" class="link-proyecto">Solicitar Información &rarr;</a>
+                    </div>
+                </div>
+                <div class="card-proyecto reveal">
+                    <div class="img-proyecto" style="background-image: url('https://pub-11a20637fa094e3ab646191bbcb2fedb.r2.dev/ael-img/IMG-20250113-WA0061.jpg');">
+                        <span class="tag-estado">Disponible</span>
+                    </div>
+                    <div class="info-proyecto">
+                        <h3>Portal El Ciprés</h3>
+                        <p>Proyecto habitacional en Tatumbla, Francisco Morazán, que cuenta con amenidades exclusivas y una ubicación privilegiada en las faldas de la Reserva de Uyuca.</p>
+                        <a href="#contacto" class="link-proyecto">Ver Disponibilidad &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="instagram-feed">
+        <div class="contenedor inst-header reveal">
+            <h2>Nuestra Comunidad</h2>
+            <a href="https://instagram.com/aelnovagroup" target="_blank">
+                <i class="fa-brands fa-instagram"></i> Síguenos en @aelnovagroup
+            </a>
+        </div>
+        
+        <div class="contenedor widget-container reveal">
+            <script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script>
+            
+            <div class="<!-- Elfsight Instagram Feed | Untitled Instagram Feed -->
+                <script src="https://elfsightcdn.com/platform.js" async></script>
+                <div class="elfsight-app-0a46be80-e548-4a50-a4af-7bb25826bd10" data-elfsight-app-lazy></div>¡Siguenos y descubre nuestros proyectos!</div>
+        </div>
+    </section>
+
+    <section id="contacto" class="contacto">
+        <div class="contenedor grid-contacto reveal">
+            
+            <div>
+                <h3 style="font-size: 2.5rem; margin-bottom: 20px;">Iniciemos una <br>Alianza Estratégica</h3>
+                <p style="color: #666; margin-bottom: 40px;">Contáctenos para descubrir oportunidades de inversión, precalificar para un proyecto o conocer detalles comerciales.</p>
+                
+                <div style="margin-bottom: 20px;">
+                    <strong style="color: var(--color-dorado); display: block; font-size: 0.9rem; text-transform: uppercase;">Teléfono Directo</strong>
+                    <span style="font-size: 1.2rem;">(+504) 8936-9156</span> <p><span style="font-size: 1.2rem;">(+504) 3343-1972</span></p>
+                </div>
+                <div style="margin-bottom: 20px;">
+                    <strong style="color: var(--color-dorado); display: block; font-size: 0.9rem; text-transform: uppercase;">Correo Electrónico</strong>
+                    <span style="font-size: 1.1rem;">info@aelnovagroup.com</span>
+                </div>
+            </div>
+            
+            <div class="formulario">
+                
+                <div class="tabs-contacto">
+                    <button type="button" class="tab-btn activo" data-target="form-contacto">Contacto General</button>
+                    <button type="button" class="tab-btn" data-target="form-precalificate">Precalifícate</button>
+                </div>
+                
+                <div class="formulario-wrapper">
+                    
+                    <form id="form-contacto" class="form-dinamico activo" method="POST" action="TU_ENLACE_DE_RECOLECCION_AQUI">
+                        <input type="text" name="nombre_empresa" placeholder="Nombre Completo" required>
+                        <input type="email" name="correo" placeholder="Correo Electrónico" required>
+                        <textarea name="sector_interes" placeholder="¿En que proyecto está interesado?" required></textarea>
+                        <button type="submit" class="btn-dorado">Enviar Mensaje</button>
+                    </form>
+
+                    <form id="form-precalificate" class="form-dinamico" method="POST" action="TU_ENLACE_DE_RECOLECCION_AQUI">
+                        
+                        <div class="form-subtitulo">Información personal</div>
+                        <input type="text" name="nombre_completo" placeholder="Nombre completo *" required>
+                        <input type="tel" name="telefono_whatsapp" placeholder="Teléfono / WhatsApp *" required>
+                        <input type="email" name="correo" placeholder="Correo electrónico">
+                        <input type="text" name="ciudad_residencia" placeholder="Ciudad de residencia">
+                        
+                        <select name="que_le_interes" required>
+                            <option value="" disabled selected>¿Qué te interesa? *</option>
+                            <option value="Terreno">Terreno</option>
+                            <option value="Vivienda">Vivienda</option>
+                            <option value="Inversión">Inversión</option>
+                            <option value="Proyecto habitacional">Proyecto habitacional</option>
+                            <option value="Terreno + Construcción">Terreno + Construcción</option>
+                            <option value="Otro">Otro</option>
+                        </select>
+
+                        <div class="form-subtitulo">Capacidad de inversión</div>
+                        <select name="ingreso_mensual_estimado" required>
+                            <option value="" disabled selected>¿Cuál es su ingreso mensual estimado? *</option>
+                            <option value="Menos de L 25,000">Menos de L 25,000</option>
+                            <option value="L 25,000 - L 50,000">L 25,000 - L 50,000</option>
+                            <option value="L 50,000 - L 100,000">L 50,000 - L 100,000</option>
+                            <option value="Más de L 100,000">Más de L 100,000</option>
+                        </select>
+
+                        <div class="form-subtitulo">Comentarios</div>
+                        <textarea name="busqueda_detalles" placeholder="Cuéntanos qué estás buscando (opcional)"></textarea>
+                        
+                        <button type="submit" class="btn-dorado">Enviar Precalificación</button>
+                    </form>
+                    
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <div class="contenedor grid-footer">
+            <div class="footer-logo">
+                <img src="https://pub-11a20637fa094e3ab646191bbcb2fedb.r2.dev/AEL%20-%20NUEVO%20LOGO%20Oficial%20SVG.svg" alt="AEL Nova Group">
+                <p style="margin-top: 15px; max-width: 300px;">Consolidándonos como un grupo empresarial moderno, desarrollando proyectos y expandiendo operaciones a nivel global.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Navegación</h4>
+                <ul>
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#servicios">Áreas de Negocio</a></li>
+                    <li><a href="#proyectos">Portafolio Inmobiliario</a></li>
+                    <li><a href="#contacto">Contacto Corporativo</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Redes Sociales</h4>
+                <ul>
+                    <li><a href="https://facebook.com/aelnovagroup" target="_blank"><i class="fa-brands fa-facebook"></i> Facebook</a></li>
+                    <li><a href="https://instagram.com/aelnovagroup" target="_blank"><i class="fa-brands fa-instagram"></i> Instagram</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 AEL Nova Group. Todos los derechos reservados. | Diseño y Desarrollo Corporativo</p>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/50489369156" target="_blank" class="btn-whatsapp" title="Contactar por WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <script>
+        // Efecto Menú al hacer Scroll
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) header.classList.add('scrolled');
+            else header.classList.remove('scrolled');
+        });
+
+        // Menú Hamburguesa Móvil
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('activo');
+        });
+
+        // Sistema Interactivo de Pestañas (Contacto / Precalifícate)
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const formDinamicos = document.querySelectorAll('.form-dinamico');
+
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Quitar clase activa a todas las pestañas y formularios
+                tabBtns.forEach(b => b.classList.remove('activo'));
+                formDinamicos.forEach(form => form.classList.remove('activo'));
+
+                // Activar la pestaña cliqueada y su respectivo formulario
+                btn.classList.add('activo');
+                const targetId = btn.getAttribute('data-target');
+                document.getElementById(targetId).classList.add('activo');
+            });
+        });
+
+        // Animaciones Reveal
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    
+                    // Animación de los contadores
+                    const contadores = entry.target.querySelectorAll('.contador');
+                    contadores.forEach(contador => {
+                        const target = +contador.getAttribute('data-target');
+                        const updateCount = () => {
+                            const count = +contador.innerText;
+                            const inc = target / 20; 
+                            if (count < target) {
+                                contador.innerText = Math.ceil(count + inc);
+                                setTimeout(updateCount, 50);
+                            } else {
+                                contador.innerText = target;
+                            }
+                        };
+                        updateCount();
+                    });
+                }
+            });
+        }, { threshold: 0.15, rootMargin: "0px 0px -50px 0px" });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+    </script>
+</body>
+</html>
