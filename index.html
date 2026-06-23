@@ -328,12 +328,15 @@
 
                     </form>
 
-                    <form id="form-precalificate" class="form-dinamico" method="POST" action="https://sheet2api.com/v1/kCvgC4o4TtYc/precalificados-web-ael" accept-charset="UTF-8">
+                    <form id="form-precalificate" class="form-dinamico" method="POST" action="https://formsubmit.co/info@aelnovagroup.com" accept-charset="UTF-8">
+                        <input type="hidden" name="_subject" value="Nueva Solicitud de Precalificación - Web AEL">        
+                        <input type="hidden" name="_next" value="https://aelnovagroup.com/gracias.html">
                         
                         <div class="form-subtitulo">Información personal</div>
                         <input type="text" name="nombre_completo" placeholder="Nombre completo *" required>
                         <input type="tel" name="telefono_whatsapp" placeholder="Teléfono / WhatsApp *" required>
                         <input type="email" name="correo" placeholder="Correo electrónico">
+                        <input type="text" name="numero_identidad" placeholder="Número de Identidad (Opcional)">
                         <input type="text" name="ciudad_residencia" placeholder="Ciudad de residencia">
                         
                         <select name="que_le_interes" required>
@@ -345,7 +348,7 @@
                             <option value="Terreno + Construcción">Terreno + Construcción</option>
                             <option value="Otro">Otro</option>
                         </select>
-
+            
                         <div class="form-subtitulo">Capacidad de inversión</div>
                         <select name="ingreso_mensual_estimado" required>
                             <option value="" disabled selected>¿Cuál es su ingreso mensual estimado? *</option>
@@ -354,12 +357,13 @@
                             <option value="L 50,000 - L 100,000">L 50,000 - L 100,000</option>
                             <option value="Más de L 100,000">Más de L 100,000</option>
                         </select>
-
+            
                         <div class="form-subtitulo">Comentarios</div>
                         <textarea name="busqueda_detalles" placeholder="Cuéntanos qué estás buscando (opcional)"></textarea>
                         
                         <button type="submit" class="btn-dorado">Enviar Precalificación</button>
-                    </form>
+        </form>
+            
                     
                 </div>
             </div>
