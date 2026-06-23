@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Solicitud Recibida! | AEL Nova Group</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9f9f9;
+            color: #1a1a1a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 20px;
+        }
+        .tarjeta-gracias {
+            background: #ffffff;
+            max-width: 500px;
+            width: 100%;
+            padding: 40px 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            border-top: 5px solid #c5a059; /* El tono dorado corporativo */
+        }
+        .icono-check {
+            width: 80px;
+            height: 80px;
+            background-color: #fbf7ed;
+            color: #c5a059;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px auto;
+        }
+        .icono-check svg {
+            width: 40px;
+            height: 40px;
+            fill: currentColor;
+        }
+        h1 {
+            font-size: 24px;
+            color: #0f172a;
+            margin-bottom: 12px;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+        p {
+            font-size: 15px;
+            color: #64748b;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        .btn-dorado {
+            display: inline-block;
+            background-color: #c5a059;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 14px 32px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 15px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 12px rgba(197, 160, 89, 0.2);
+        }
+        .btn-dorado:hover {
+            background-color: #b38f4b;
+            transform: translateY(-2px);
+        }
+        .btn-dorado:active {
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="tarjeta-gracias">
+        <div class="icono-check">
+            <svg viewBox="0 0 24 24">
+                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+            </svg>
+        </div>
+        <h1>¡Información Recibida!</h1>
+        <p>Gracias por escribirnos. Un asesor de <strong>AEL Nova Group</strong> revisará los detalles de tu precalificación o consulta y se pondrá en contacto contigo en la brevedad posible.</p>
+        
+        <a href="index.html" class="btn-dorado">Volver al Inicio</a>
+    </div>
+
+</body>
+</html>
